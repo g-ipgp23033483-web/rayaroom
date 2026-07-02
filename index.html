@@ -579,24 +579,24 @@ for(let i = 1; i <= 10; i++){
 // ============ RULES DATA ============
 const RULES = [
   { icon:'🧭', title_zh:'探索与互动', title_ms:'Teroka & Interaksi', text_zh:'自由拖拽角色探索不同的节庆房间，感受马来西亚的文化魅力。', text_ms:'Pilih watak anda untuk meneroka bilik perayaan dan menikmati keunikan budaya Malaysia.' },
-  { icon:'⚔️', title_zh:'挑战关卡', title_ms:'Cabaran Kuiz', text_zh:'点击"闯关"进入答题。每关包含100块钱奖励，答错需重试直到成功。', text_ms:'Klik "Misi" untuk menjawab soalan. Setiap tahap memberi ganjaran RM100. Cuba lagi sehingga betul.' },
-  { icon:'🏠', title_zh:'收集场景', title_ms:'Kumpul Bilik', text_zh:'使用赚取的金币在"商店"购买解锁新场景，每个场景价值100块。', text_ms:'Guna duit untuk beli bilik baharu di "Shop". Setiap bilik berharga RM100.' },
-  { icon:'👥', title_zh:'收集角色', title_ms:'Kumpul Watak', text_zh:'探索多彩的文化角色！在商店购买新角色，每个角色50块。点击"角色"按钮随时切换。', text_ms:'Teroka pelbagai watak budaya! Beli watak baharu di Kedai, setiap satu RM50. Tekan butang "Watak" untuk tukar.' },
+  { icon:'⚔️', title_zh:'挑战关卡', title_ms:'Cabaran Kuiz', text_zh:'点击"闯关"进入答题。共10关，奖励递增（第1关100金币，第10关1000金币），答错需重试直到成功。', text_ms:'Klik "Misi" untuk menjawab soalan. Terdapat 10 tahap dengan ganjaran meningkat (Tahap 1: 100 syiling, Tahap 10: 1000 syiling). Cuba lagi sehingga betul.' },
+  { icon:'🏠', title_zh:'收集场景', title_ms:'Kumpul Bilik', text_zh:'使用赚取的金币在"商店"购买解锁新场景，价格从99.99到999.99不等。', text_ms:'Guna syiling untuk beli bilik baharu di "Kedai". Harga berbeza dari 99.99 hingga 999.99 syiling.' },
+  { icon:'👥', title_zh:'收集角色', title_ms:'Kumpul Watak', text_zh:'探索多彩的文化角色！2个默认角色免费，其他角色价格从88.88到388.99不等。点击"角色"按钮随时切换。', text_ms:'Teroka pelbagai watak budaya! 2 watak lalai percuma, yang lain dari 88.88 hingga 388.99 syiling. Tekan butang "Watak" untuk tukar.' },
   { icon:'🎵', title_zh:'背景音乐', title_ms:'Muzik Latar', text_zh:'点击"音乐"按钮开启/关闭背景音乐。选择不同的主题音乐，调整音量享受沉浸式体验。', text_ms:'Klik butang "Muzik" untuk nyalakan/matikan lagu latar. Pilih muzik tema berbeza dan laras volum untuk pengalaman penuh.' },
-  { icon:'💾', title_zh:'保存进度', title_ms:'Simpan Rekod', text_zh:'你的金币、角色、房间和成就将自动保存。', text_ms:'Duit, watak, bilik dan pencapaian disimpan secara automatik.' },
+  { icon:'💾', title_zh:'保存进度', title_ms:'Simpan Rekod', text_zh:'你的金币、角色、房间和成就将自动保存。', text_ms:'Syiling, watak, bilik dan pencapaian disimpan secara automatik.' },
 ];
 
 // ============ ACHIEVEMENTS ============
 const ACHIEVEMENTS = [
   { id:'a1', icon:'🌟', title_zh:'初级探险家', title_ms:'Peneroka Awal', desc_zh:'收集5个场景', desc_ms:'Kumpul 5 bilik', need:5 },
-  { id:'a2', icon:'🏅', title_zh:'文化达人', title_ms:'Pakar Budaya', desc_zh:'完成10道题', desc_ms:'Selesai 10 soalan', need:10 },
-  { id:'a3', icon:'👑', title_zh:'遗产守护者', title_ms:'Penjaga Warisan', desc_zh:'收集全部场景', desc_ms:'Kumpul semua bilik', need:6 },
+  { id:'a2', icon:'🏅', title_zh:'文化达人', title_ms:'Pakar Budaya', desc_zh:'完成全部10关', desc_ms:'Selesai semua 10 tahap', need:10 },
+  { id:'a3', icon:'👑', title_zh:'遗产守护者', title_ms:'Penjaga Warisan', desc_zh:'收集全部7个场景', desc_ms:'Kumpul semua 7 bilik', need:7 },
 ];
 
 // ============ LANG ============
 const L = {
   start_btn:{zh:'开始探险 Mula!',ms:'Mula Meneroka!'}, nav_room:{zh:'房间',ms:'Bilik'}, nav_shop:{zh:'商店',ms:'Kedai'}, nav_char:{zh:'角色',ms:'Watak'}, nav_quest:{zh:'闯关',ms:'Misi'}, nav_bgm:{zh:'音乐',ms:'Muzik'}, nav_exit:{zh:'退出',ms:'Keluar'}, nav_reset:{zh:'重置',ms:'Semula'},
-  rules_title:{zh:'游戏规则',ms:'Peraturan'}, next:{zh:'下一步',ms:'Seterusnya'}, rooms_title:{zh:'我的房间',ms:'Bilik Saya'}, shop_title:{zh:'场景商店',ms:'Kedai Bilik'}, shop_scenes:{zh:'场景',ms:'Bilik'}, shop_chars:{zh:'角色',ms:'Watak'},
+  rules_title:{zh:'游戏规则',ms:'Peraturan'}, next:{zh:'下一步',ms:'Seterusnya'}, rooms_title:{zh:'我的房间',ms:'Bilik Saya'}, shop_title:{zh:'商店',ms:'Kedai'}, shop_scenes:{zh:'场景',ms:'Bilik'}, shop_chars:{zh:'角色',ms:'Watak'},
   quest_title:{zh:'文化闯关',ms:'Misi Budaya'}, achieve_title:{zh:'成就',ms:'Pencapaian'}, bgm_title:{zh:'音乐控制',ms:'Kawalan Muzik'}, char_select:{zh:'选择角色',ms:'Pilih Watak'}, char_desc:{zh:'探索不同的文化角色',ms:'Teroka pelbagai watak budaya'},
   bgm_default:{zh:'默认背景音',ms:'Muzik Latar Belakang Lalai'}, bgm_xmas:{zh:'圣诞主题',ms:'Tema Krismas'}, bgm_raya:{zh:'开斋节主题',ms:'Tema Hari Raya'}, bgm_cny:{zh:'农历新年主题',ms:'Tema Tahun Baru Cina'}, bgm_close:{zh:'关闭',ms:'Tutup'},
   owned:{zh:'已收藏',ms:'Dimiliki'}, buy:{zh:'购买',ms:'Beli'}, current:{zh:'当前',ms:'Semasa'}, use:{zh:'使用',ms:'Guna'},
@@ -917,13 +917,13 @@ function fireConfetti(){
 function showAchievements(){
   playClick(); const list=document.getElementById('achieveList');
   list.innerHTML=ACHIEVEMENTS.map(a=>{
-    let u=false; if(a.id==='a1')u=state.unlockedScenes.length>=5; else if(a.id==='a2')u=state.completedQuests.length>=10; else if(a.id==='a3')u=state.unlockedScenes.length>=6;
+    let u=false; if(a.id==='a1')u=state.unlockedScenes.length>=5; else if(a.id==='a2')u=state.completedQuests.length>=10; else if(a.id==='a3')u=state.unlockedScenes.length>=7;
     return `<div class="flex items-center gap-3 p-3 rounded-xl ${u?'bg-amber-500/15 border border-amber-400/20':'bg-white/5 border border-white/5'}"><span class="text-3xl ${u?'badge-unlock':'opacity-30 grayscale'}">${a.icon}</span><div class="flex-1"><p class="font-bold text-sm ${u?'text-amber-300':'text-white/40'}">${state.lang==='zh'?a.title_zh:a.title_ms}</p><p class="text-xs ${u?'text-white/60':'text-white/30'}">${state.lang==='zh'?a.desc_zh:a.desc_ms}</p></div><span class="text-xs px-2 py-1 rounded-full ${u?'bg-emerald-500/20 text-emerald-400':'bg-white/5 text-white/30'}">${u?t('unlocked'):t('not_yet')}</span></div>`;
   }).join('');
   showModal('achieveModal');
 }
 function checkAchievements(){
-  ACHIEVEMENTS.forEach(a=>{let u=false;if(a.id==='a1')u=state.unlockedScenes.length>=5;else if(a.id==='a2')u=state.completedQuests.length>=10;else if(a.id==='a3')u=state.unlockedScenes.length>=6;const k='ach_'+a.id;if(u&&!localStorage.getItem(k)){localStorage.setItem(k,'1');showToast(`🏆 ${state.lang==='zh'?a.title_zh:a.title_ms}`);}});
+  ACHIEVEMENTS.forEach(a=>{let u=false;if(a.id==='a1')u=state.unlockedScenes.length>=5;else if(a.id==='a2')u=state.completedQuests.length>=10;else if(a.id==='a3')u=state.unlockedScenes.length>=7;const k='ach_'+a.id;if(u&&!localStorage.getItem(k)){localStorage.setItem(k,'1');showToast(`🏆 ${state.lang==='zh'?a.title_zh:a.title_ms}`);}});
 }
 
 // ============ TOAST ============
