@@ -248,7 +248,7 @@ html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
       <button onclick="showAchievements()" class="text-yellow-300 hover:text-yellow-200 transition" title="成就"><i data-lucide="award" style="width:20px;height:20px;"></i></button>
       <button onclick="showRules()" class="text-white/70 hover:text-white transition" title="规则"><i data-lucide="help-circle" style="width:20px;height:20px;"></i></button>
       <div id="coinDisplay" class="flex items-center gap-1 bg-yellow-500/20 px-3 py-1 rounded-full">
-       <span class="coin-spin">🪙</span>
+       <span class="text-yellow-300 font-bold text-sm">RM</span>
        <span id="coinCount" class="text-yellow-300 font-bold text-sm">0</span>
       </div>
      </div>
@@ -323,7 +323,7 @@ html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
         <button onclick="closeModal('shopModal')" class="text-white/60 hover:text-white"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
        </div>
        <div class="flex items-center gap-2 bg-yellow-500/15 px-3 py-2 rounded-lg mb-3 shrink-0">
-        <span class="coin-spin">🪙</span>
+        <span class="text-yellow-300 font-bold text-sm">RM</span>
         <span class="text-yellow-300 font-bold text-sm" id="shopCoins">0</span>
        </div>
        <div class="flex gap-2 mb-3 shrink-0">
@@ -425,7 +425,7 @@ html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
        <h2 class="text-white font-bold text-2xl mb-2"><span data-lang="quest_complete">恭喜完成挑战！</span></h2>
        <p class="text-white/80 text-lg mb-1"><span data-lang="quest_reward_title">你获得了</span>:</p>
        <div class="text-5xl font-bold text-amber-300 mb-6">
-        <span id="questRewardAmount">100</span> <span class="coin-spin">🪙</span>
+        <span class="text-3xl">RM</span><span id="questRewardAmount">100</span>
        </div>
        <p id="questRewardMsg" class="text-white/60 text-sm mb-6 leading-relaxed"></p>
        <button onclick="closeQuestCompleteModal()" class="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-amber-400 to-yellow-400 text-amber-900 hover:from-amber-300 hover:to-yellow-300 transition font-bold text-lg shadow-lg"> <span data-lang="quest_thanks">谢谢！</span> 💝 </button>
@@ -662,7 +662,7 @@ function exitToSplash(){ playClick(); saveState(); stopBGM(); state.bgmOn=false;
 // ============ COINS ============
 function updateCoinDisplay(){ dom.coinCount.textContent=state.coins; const el=document.getElementById('shopCoins'); if(el) el.textContent=state.coins; }
 function addCoins(amount){
-  const fly=document.createElement('div'); fly.className='coin-fly'; fly.textContent='🪙'; fly.style.left='50%'; fly.style.top='40%'; fly.style.setProperty('--tx','120px'); fly.style.setProperty('--ty','-200px');
+  const fly=document.createElement('div'); fly.className='coin-fly'; fly.textContent='RM'; fly.style.left='50%'; fly.style.top='40%'; fly.style.setProperty('--tx','120px'); fly.style.setProperty('--ty','-200px'); fly.style.color='#FFD700'; fly.style.fontWeight='bold'; fly.style.fontSize='24px';
   document.body.appendChild(fly); setTimeout(()=>fly.remove(),900);
   const target=state.coins+amount; const step=Math.ceil(amount/15);
   const iv=setInterval(()=>{ state.coins=Math.min(state.coins+step,target); dom.coinCount.textContent=state.coins; if(state.coins>=target){clearInterval(iv);state.coins=target;dom.coinCount.textContent=state.coins;} },30);
@@ -832,21 +832,21 @@ function switchShopTab(tab){
 
 function renderShopList(){
   const list=document.getElementById('shopList');
-  if(shopCurrentTab==='scenes'){
-    const sorted=[...ROOMS].slice(1).sort((a,b)=>a.price-b.price);
-    list.innerHTML=sorted.map(r=>{const owned=state.unlockedScenes.includes(ROOMS.indexOf(r));const ri=ROOMS.indexOf(r);
-      return `<button class="w-full text-left p-3 rounded-lg transition-all duration-200 group ${owned?'bg-emerald-500/15 border border-emerald-400/30 hover:bg-emerald-500/25':'bg-white/5 border border-white/10 hover:bg-white/10'}" onclick="selectShopItem(${ri},'scene')">
-        <div class="flex items-center justify-between gap-2"><div class="flex-1 min-w-0"><p class="font-bold text-white text-sm truncate">${state.lang==='zh'?r.name_zh:r.name_ms}</p><p class="text-white/50 text-xs mt-0.5 truncate">${state.lang==='zh'?(r.price===0?'默认场景':'文化主题'):(r.price===0?'Bilik Asli':'Tema Budaya')}</p></div>
-        ${owned?`<span class="inline-block text-xs font-bold px-2 py-1 rounded-full bg-emerald-500/30 text-emerald-300 whitespace-nowrap shrink-0">${t('owned')}</span>`:`<button onclick="event.stopPropagation();buyRoom(${ri})" class="text-xs font-bold px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg transition-all duration-200 whitespace-nowrap shrink-0">🪙 ${r.price.toFixed(2)}</button>`}
-        </div></button>`;}).join('');
-  } else {
-    const sorted=[...CHARACTERS].sort((a,b)=>a.price-b.price);
-    list.innerHTML=sorted.map(c=>{const owned=state.ownedChars&&state.ownedChars.includes(c.id);
-      return `<button class="w-full text-left p-3 rounded-lg transition-all duration-200 group ${owned?'bg-emerald-500/15 border border-emerald-400/30 hover:bg-emerald-500/25':'bg-white/5 border border-white/10 hover:bg-white/10'}" onclick="selectShopItem('${c.id}','char')">
-        <div class="flex items-center justify-between gap-2"><div class="flex-1 min-w-0"><p class="font-bold text-white text-sm truncate">${state.lang==='zh'?c.name_zh:c.name_ms}</p><p class="text-white/50 text-xs mt-0.5 truncate">${state.lang==='zh'?c.culture_zh:c.culture_ms}</p></div>
-        ${owned?`<span class="inline-block text-xs font-bold px-2 py-1 rounded-full bg-emerald-500/30 text-emerald-300 whitespace-nowrap shrink-0">${t('owned')}</span>`:`<button onclick="event.stopPropagation();buyChar('${c.id}')" class="text-xs font-bold px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg transition-all duration-200 whitespace-nowrap shrink-0">🪙 ${c.price.toFixed(2)}</button>`}
-        </div></button>`;}).join('');
-  }
+   if(shopCurrentTab==='scenes'){
+     const sorted=[...ROOMS].slice(1).sort((a,b)=>a.price-b.price);
+     list.innerHTML=sorted.map(r=>{const owned=state.unlockedScenes.includes(ROOMS.indexOf(r));const ri=ROOMS.indexOf(r);
+       return `<button class="w-full text-left p-3 rounded-lg transition-all duration-200 group ${owned?'bg-emerald-500/15 border border-emerald-400/30 hover:bg-emerald-500/25':'bg-white/5 border border-white/10 hover:bg-white/10'}" onclick="selectShopItem(${ri},'scene')">
+         <div class="flex items-center justify-between gap-2"><div class="flex-1 min-w-0"><p class="font-bold text-white text-sm truncate">${state.lang==='zh'?r.name_zh:r.name_ms}</p><p class="text-white/50 text-xs mt-0.5 truncate">${state.lang==='zh'?(r.price===0?'默认场景':'文化主题'):(r.price===0?'Bilik Asli':'Tema Budaya')}</p></div>
+         ${owned?`<span class="inline-block text-xs font-bold px-2 py-1 rounded-full bg-emerald-500/30 text-emerald-300 whitespace-nowrap shrink-0">${t('owned')}</span>`:`<button onclick="event.stopPropagation();buyRoom(${ri})" class="text-xs font-bold px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg transition-all duration-200 whitespace-nowrap shrink-0">RM${r.price.toFixed(2)}</button>`}
+         </div></button>`;}).join('');
+   } else {
+     const sorted=[...CHARACTERS].sort((a,b)=>a.price-b.price);
+     list.innerHTML=sorted.map(c=>{const owned=state.ownedChars&&state.ownedChars.includes(c.id);
+       return `<button class="w-full text-left p-3 rounded-lg transition-all duration-200 group ${owned?'bg-emerald-500/15 border border-emerald-400/30 hover:bg-emerald-500/25':'bg-white/5 border border-white/10 hover:bg-white/10'}" onclick="selectShopItem('${c.id}','char')">
+         <div class="flex items-center justify-between gap-2"><div class="flex-1 min-w-0"><p class="font-bold text-white text-sm truncate">${state.lang==='zh'?c.name_zh:c.name_ms}</p><p class="text-white/50 text-xs mt-0.5 truncate">${state.lang==='zh'?c.culture_zh:c.culture_ms}</p></div>
+         ${owned?`<span class="inline-block text-xs font-bold px-2 py-1 rounded-full bg-emerald-500/30 text-emerald-300 whitespace-nowrap shrink-0">${t('owned')}</span>`:`<button onclick="event.stopPropagation();buyChar('${c.id}')" class="text-xs font-bold px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg transition-all duration-200 whitespace-nowrap shrink-0">RM${c.price.toFixed(2)}</button>`}
+         </div></button>`;}).join('');
+   }
 }
 
 function selectShopItem(itemId,type){
